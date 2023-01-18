@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import clsx from "clsx";
-import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/router";
+import clsx from "clsx";
 
 type AddTodoPayload = {
   userId: string;
@@ -25,6 +25,10 @@ export default function AddTodoForm() {
   const mutation = useMutation(addTodo);
 
   const { id: currentUser } = router.query;
+  const hasError = errorMsg.length > 0;
+  const isPosting = mutation.status === "loading";
+  const resetError = () => setErrorMsg("");
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
@@ -47,9 +51,6 @@ export default function AddTodoForm() {
       },
     );
   };
-  const hasError = errorMsg.length > 0;
-  const isPosting = mutation.status === "loading";
-  const resetError = () => setErrorMsg("");
 
   return (
     <form onSubmit={handleSubmit} className="mb-16">

@@ -1,6 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ForwardIcon, CheckIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { Todo } from "../pages/todos/[id]";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Todo } from "pages/todos/[id]";
 import clsx from "clsx";
 
 type TodoItemProps = {

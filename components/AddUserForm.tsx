@@ -1,6 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import clsx from "clsx";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FormEvent, useState } from "react";
+import clsx from "clsx";
 
 const addUser = (username: string) =>
   fetch("/api/users", {
@@ -16,6 +16,11 @@ export default function AddUserForm({}) {
   const queryClient = useQueryClient();
   const [errorMsg, setErrorMsg] = useState("");
   const mutation = useMutation(addUser);
+
+  const hasError = errorMsg.length > 0;
+  const isPosting = mutation.status === "loading";
+  const resetError = () => setErrorMsg("");
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
@@ -34,9 +39,6 @@ export default function AddUserForm({}) {
       },
     });
   };
-  const hasError = errorMsg.length > 0;
-  const isPosting = mutation.status === "loading";
-  const resetError = () => setErrorMsg("");
 
   return (
     <form onSubmit={handleSubmit}>

@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { GetServerSideProps } from "next";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import AddTodoForm from "../../components/AddTodoForm";
-import TodoItem from "../../components/TodoItem";
-import { supabase } from "../../lib/supabaseClient";
+import Link from "next/link";
+
+import AddTodoForm from "components/AddTodoForm";
+import TodoItem from "components/TodoItem";
+import { supabase } from "lib/supabaseClient";
 
 export type Todo = {
   id: string;

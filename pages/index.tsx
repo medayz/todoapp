@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import AddUserForm from "../components/AddUserForm";
-import UserItem, { User } from "../components/UserItem";
-import { supabase } from "../lib/supabaseClient";
+
+import UserItem, { User } from "components/UserItem";
+import AddUserForm from "components/AddUserForm";
+import { supabase } from "lib/supabaseClient";
 
 type UsersResponse = {
   data: User[];
